@@ -1,0 +1,25 @@
+repos:
+  # Ruff: linting & formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.4
+    hooks:
+      - id: ruff
+        stages: [commit]
+      - id: ruff-format
+        stages: [commit]
+
+  # Mypy: type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.0
+    hooks:
+      - id: mypy
+        stages: [commit]
+
+  # # Gitlint: commit message checks
+  # - repo: https://github.com/jorisroovers/gitlint
+  #   rev: v0.19.1
+  #   hooks:
+  #     - id: gitlint
+  #       stages: [commit-msg]
+  #       pass_filenames: false
+  #       args: ["--config=.gitlint"] # pass a custom config file named .gitlint

@@ -1,0 +1,22 @@
+{
+    // Python settings
+    "python.venvPath": "~/venvs",
+    "python.defaultInterpreterPath": "./.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.typeCheckingMode": "off", // Disable Pylance Checking so MyPy Extension is only used
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+
+      // Formatters
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            // "source.fixAll": "explicit" to automatically fix the issues found, where possible
+            "source.organizeImports": "explicit"
+        }
+    },
+}
