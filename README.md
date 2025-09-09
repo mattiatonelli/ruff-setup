@@ -75,6 +75,7 @@ dev = [
     "pre-commit==2.21.0",
     "mypy==1.6.0",
     "ruff>=0.5.3",
+    "commitizen>=4.8.4",
 ]
 ```
 
@@ -94,7 +95,7 @@ uv venv <your_env_name>
 uv add "pandas>=2.3.2"
 
 # Development dependencies with strict typing
-uv add --dev "ipykernel>=6.13.0" "pytest>=7.1.2" "pytest-cov>=3.0.0" "pre-commit==2.21.0" "mypy==1.6.0" "ruff>=0.5.3"
+uv add --dev "ipykernel>=6.13.0" "pytest>=7.1.2" "pytest-cov>=3.0.0" "pre-commit==2.21.0" "mypy==1.6.0" "ruff>=0.5.3" "commitizen>=4.8.4"
 ```
 
 ## Step 5: Configure Checks
@@ -180,7 +181,7 @@ extend-ignore = [
 ]
 
 [tool.quotes]
-string = "single"
+string = "double"
 docstring = "triple-double"
 
 [tool.lint.mypy]
@@ -261,33 +262,35 @@ repos:
       - id: mypy
         stages: [commit]
 
-  # Gitlint: commit message checks
-  - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.19.1
+  # Commitizen: commit message checks
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v1.17.0
     hooks:
-      - id: gitlint
+      - id: commitizen
         stages: [commit-msg]
-        pass_filenames: false
-        args: ["--config=.gitlint"] # pass a custom config file
 ```
 
-Add a `.gitlint` file in the root
+## Step 8: Initialize Commitizen in Your Virtual Environment
+
+```bash
+# Activate the environment
+source .venv/bin/activate
+
+# Initialize commitizen
+cz init
+```
+
+Once you have answered the prompted questions, then below will appear in your `pyproject.toml`:
 
 ```toml
-[general]
-ignore-merge-commits = true
-
-[title-max-length]
-line-length=50
-
-[body-max-line-length]
-line-length=72
-
-[title-match-regex]
-regex=^[A-Z]   # Require capitalized title
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "uv"
 ```
 
-## Step 8: Enjoy the check
+## Step 9: Enjoy Your Developer Life
 
 Now, comitting the code will trigger the checks on:
 
