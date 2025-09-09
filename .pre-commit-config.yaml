@@ -15,11 +15,9 @@ repos:
       - id: mypy
         stages: [commit]
 
-  # # Gitlint: commit message checks
-  # - repo: https://github.com/jorisroovers/gitlint
-  #   rev: v0.19.1
-  #   hooks:
-  #     - id: gitlint
-  #       stages: [commit-msg]
-  #       pass_filenames: false
-  #       args: ["--config=.gitlint"] # pass a custom config file named .gitlint
+  # Commitizen: commit message checks
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v1.17.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]

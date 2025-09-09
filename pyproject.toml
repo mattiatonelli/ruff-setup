@@ -16,6 +16,7 @@ dev = [
     "pre-commit==2.21.0",
     "mypy==1.6.0",
     "ruff>=0.5.3",
+    "commitizen>=4.8.4",
 ]
 
 [tool.ruff]
@@ -96,7 +97,7 @@ extend-ignore = [
 ]
 
 [tool.quotes]
-string = "single"
+string = "double"
 docstring = "triple-double"
 
 [tool.lint.mypy]
@@ -126,3 +127,9 @@ strict_optional = true               # Enforce strict handling of `Optional[...]
 
 # Incremental build behavior
 cache_fine_grained = true            # Speeds up repeated runs with fine-grained caching
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "uv"
